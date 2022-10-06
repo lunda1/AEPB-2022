@@ -5,7 +5,6 @@ import com.example.AEPB.parking.domain.ParkingLot;
 import com.example.AEPB.parking.domain.ParkingOrPickingUpException;
 import com.example.AEPB.parking.domain.Ticket;
 
-import java.util.Comparator;
 import java.util.List;
 
 public class SmartParkingBoy extends ParkingBoy {
