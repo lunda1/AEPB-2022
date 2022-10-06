@@ -16,13 +16,7 @@ public class SmartParkingBoy extends ParkingBoy {
 
     @Override
     public Ticket park(Car car) throws ParkingOrPickingUpException {
-        this.getParkingLots().sort(new Comparator<ParkingLot>() {
-            @Override
-            public int compare(ParkingLot o1, ParkingLot o2) {
-                return o1.remainingSize() >= o2.remainingSize() ? -1 : 1;
-            }
-        });
-
+        this.sortLotsOrderByRemainingDesc();
         return super.park(car);
     }
 
@@ -30,4 +24,5 @@ public class SmartParkingBoy extends ParkingBoy {
     public Car pickUp(Ticket ticket) throws ParkingOrPickingUpException {
         return super.pickUp(ticket);
     }
+
 }

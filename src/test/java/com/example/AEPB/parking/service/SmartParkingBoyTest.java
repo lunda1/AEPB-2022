@@ -1,5 +1,6 @@
 package com.example.AEPB.parking.service;
 
+import com.example.AEPB.parking.Constants;
 import com.example.AEPB.parking.domain.Car;
 import com.example.AEPB.parking.domain.ParkingLot;
 import com.example.AEPB.parking.domain.ParkingOrPickingUpException;
@@ -40,7 +41,7 @@ class SmartParkingBoyTest {
         Car car = Car.builder().plateNum("").build();
         Exception exception = assertThrows(ParkingOrPickingUpException.class, () -> parkingBoy.park(car));
 
-        assertTrue(exception.getMessage().contains("invalid car"));
+        assertTrue(exception.getMessage().contains(Constants.ERROR_PLATE_NUM_CANT_BE_BLANK));
 
     }
 
@@ -52,15 +53,6 @@ class SmartParkingBoyTest {
         Car car = parkingBoy.pickUp(ticket);
 
         assertEquals(expectedCar, car);
-    }
-
-    @Test
-    void should_pick_up_fail_when_pick_up_given_an_invalid_ticket() {
-        SmartParkingBoy parkingBoy = new SmartParkingBoy(Arrays.asList(new ParkingLot(0,1), new ParkingLot(1,1)));
-        Ticket ticket = new Ticket("");
-
-        Exception exception = assertThrows(ParkingOrPickingUpException.class, () -> parkingBoy.pickUp(ticket));
-        assertTrue(exception.getMessage().contains("invalid ticket"));
     }
 
 }

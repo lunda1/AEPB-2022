@@ -1,5 +1,6 @@
 package com.example.AEPB.parking.service;
 
+import com.example.AEPB.parking.Constants;
 import com.example.AEPB.parking.domain.Car;
 import com.example.AEPB.parking.domain.ParkingLot;
 import com.example.AEPB.parking.domain.ParkingOrPickingUpException;
@@ -15,11 +16,12 @@ public class RobotParkingBoy extends ParkingBoy{
 
     @Override
     public Ticket park(Car car) throws ParkingOrPickingUpException {
+        this.sortLotsOrderByRemainingDesc();
         return super.park(car);
     }
 
     @Override
     public Car pickUp(Ticket ticket) throws ParkingOrPickingUpException {
-        throw new ParkingOrPickingUpException("RobotParkingBoy don't support picking up cars");
+        throw new ParkingOrPickingUpException(Constants.ERROR_ROBOT_NOT_SUPPORT_PICKING_UP);
     }
 }

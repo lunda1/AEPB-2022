@@ -11,7 +11,7 @@ import java.util.Objects;
 @AllArgsConstructor
 public class Ticket {
     private String plateNum;
-    private int lotNum;
+    private Integer lotNum;
 
     public Ticket(String plateNum) {
         this.plateNum = plateNum;

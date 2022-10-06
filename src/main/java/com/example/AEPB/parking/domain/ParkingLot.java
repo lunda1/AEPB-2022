@@ -1,7 +1,6 @@
 package com.example.AEPB.parking.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
+import com.example.AEPB.parking.Constants;
 import lombok.Getter;
 import lombok.Setter;
 import org.apache.logging.log4j.util.Strings;
@@ -13,21 +12,27 @@ import java.util.List;
 @Setter
 public class ParkingLot {
 
-    private int lotNum;
+    private Integer lotNum;
 
     private int size;
 
     private List<Car> carList;
 
-    public ParkingLot(int lotNum, int size) {
-        this.lotNum = lotNum;
+    public ParkingLot(int size) {
         this.size = size;
         this.carList = new ArrayList<>(size);
     }
 
+    public ParkingLot(Integer lotNum, int size) {
+        this(size);
+        this.lotNum = lotNum;
+    }
+
     public Ticket park(Car car) throws ParkingOrPickingUpException {
-        if (car == null || Strings.isBlank(car.getPlateNum())) {
-            throw new ParkingOrPickingUpException("invalid car");
+        if (car == null) {
+            throw new ParkingOrPickingUpException(Constants.ERROR_CAR_CANT_BE_NULL);
+        } else if (Strings.isBlank(car.getPlateNum())) {
+            throw new ParkingOrPickingUpException(Constants.ERROR_PLATE_NUM_CANT_BE_BLANK);
         }
 
         if (carList != null && carList.size() < size) {
@@ -39,8 +44,10 @@ public class ParkingLot {
     }
 
     public Car pickUp(Ticket ticket) throws ParkingOrPickingUpException {
-        if (ticket == null || Strings.isBlank(ticket.getPlateNum())) {
-            throw new ParkingOrPickingUpException("invalid ticket");
+        if (ticket == null) {
+            throw new ParkingOrPickingUpException(Constants.ERROR_TICKET_CANT_BE_NULL);
+        } else if (Strings.isBlank(ticket.getPlateNum())) {
+            throw new ParkingOrPickingUpException(Constants.ERROR_PLATE_NUM_CANT_BE_BLANK);
         }
 
         return carList.stream()

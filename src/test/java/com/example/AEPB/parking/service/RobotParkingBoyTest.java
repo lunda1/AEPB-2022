@@ -1,5 +1,6 @@
 package com.example.AEPB.parking.service;
 
+import com.example.AEPB.parking.Constants;
 import com.example.AEPB.parking.domain.Car;
 import com.example.AEPB.parking.domain.ParkingLot;
 import com.example.AEPB.parking.domain.ParkingOrPickingUpException;
@@ -23,12 +24,22 @@ class RobotParkingBoyTest {
     }
 
     @Test
-    void should_park_fail_when_park_given_an_invalid_car() throws ParkingOrPickingUpException {
+    void should_park_fail_when_park_given_a_null_car() throws ParkingOrPickingUpException {
+        RobotParkingBoy parkingBoy = new RobotParkingBoy(Arrays.asList(new ParkingLot(0, 5), new ParkingLot(1, 10)));
+        Car car = null;
+        Exception exception = assertThrows(ParkingOrPickingUpException.class, () -> parkingBoy.park(car));
+
+        assertTrue(exception.getMessage().contains(Constants.ERROR_CAR_CANT_BE_NULL));
+
+    }
+
+    @Test
+    void should_park_fail_when_park_given_a_blank_plateNum_car() throws ParkingOrPickingUpException {
         RobotParkingBoy parkingBoy = new RobotParkingBoy(Arrays.asList(new ParkingLot(0, 5), new ParkingLot(1, 10)));
         Car car = Car.builder().plateNum("").build();
         Exception exception = assertThrows(ParkingOrPickingUpException.class, () -> parkingBoy.park(car));
 
-        assertTrue(exception.getMessage().contains("invalid car"));
+        assertTrue(exception.getMessage().contains(Constants.ERROR_PLATE_NUM_CANT_BE_BLANK));
 
     }
 
@@ -38,6 +49,6 @@ class RobotParkingBoyTest {
         Ticket ticket = new Ticket("");
 
         Exception exception = assertThrows(ParkingOrPickingUpException.class, () -> parkingBoy.pickUp(ticket));
-        assertTrue(exception.getMessage().contains("RobotParkingBoy don't support picking up cars"));
+        assertTrue(exception.getMessage().contains(Constants.ERROR_ROBOT_NOT_SUPPORT_PICKING_UP));
     }
 }
