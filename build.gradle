@@ -18,8 +18,11 @@ ext {
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    implementation 'org.projectlombok:lombok:1.18.20'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.testcontainers:junit-jupiter'
+	annotationProcessor "org.projectlombok:lombok:1.18.20"
+	testAnnotationProcessor "org.projectlombok:lombok:1.18.20"
 }
 
 dependencyManagement {
