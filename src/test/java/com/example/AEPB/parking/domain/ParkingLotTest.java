@@ -1,6 +1,7 @@
 package com.example.AEPB.parking.domain;
 
 import com.example.AEPB.parking.Constants;
+import com.example.AEPB.parking.ParkingOrPickingUpException;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

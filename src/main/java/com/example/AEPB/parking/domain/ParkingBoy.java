@@ -1,9 +1,9 @@
-package com.example.AEPB.parking.service;
+package com.example.AEPB.parking.domain;
 
 import com.example.AEPB.parking.Constants;
 import com.example.AEPB.parking.domain.Car;
 import com.example.AEPB.parking.domain.ParkingLot;
-import com.example.AEPB.parking.domain.ParkingOrPickingUpException;
+import com.example.AEPB.parking.ParkingOrPickingUpException;
 import com.example.AEPB.parking.domain.Ticket;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

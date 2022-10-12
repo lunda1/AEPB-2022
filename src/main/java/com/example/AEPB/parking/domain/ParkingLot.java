@@ -1,6 +1,7 @@
 package com.example.AEPB.parking.domain;
 
 import com.example.AEPB.parking.Constants;
+import com.example.AEPB.parking.ParkingOrPickingUpException;
 import lombok.Getter;
 import lombok.Setter;
 import org.apache.logging.log4j.util.Strings;
